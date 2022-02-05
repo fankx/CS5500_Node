@@ -3,9 +3,7 @@
  */
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
-mongoose.connect(
-  'mongodb+srv://test:test@frankiemedia.rfsor.mongodb.net/tuit?retryWrites=true&w=majority'
-);
+mongoose.connect(process.env.MONGO_URI);
 import bodyParser from 'body-parser';
 import UserController from './controllers/UserController';
 import TuitController from './controllers/TuitController';
