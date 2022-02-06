@@ -10,10 +10,8 @@ import TuitController from './controllers/TuitController';
 const app = express();
 app.use(bodyParser.json());
 
-app.get('/', (req: Request, res: Response) => res.send('Welcome!'));
-
-app.get('/add/:a/:b', (req: Request, res: Response) =>
-  res.send(req.params.a + req.params.b)
+app.get('/', (req: Request, res: Response) =>
+  res.send('This is the root of the server')
 );
 
 const userController = UserController.getInstance(app);
