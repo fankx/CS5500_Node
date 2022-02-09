@@ -3,12 +3,16 @@
  */
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
-mongoose.connect(process.env.MONGO_URI);
-import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 import UserController from './controllers/UserController';
 import TuitController from './controllers/TuitController';
+
+dotenv.config();
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
+
+const conn = mongoose.connect(process.env.MONGO_URI);
+conn.then(() => console.log('Connected to MongoDB'));
 
 app.get('/', (req: Request, res: Response) =>
   res.send('This is the root of the server')
