@@ -1,3 +1,7 @@
+/**
+ * @file Implements DAO managing data storage of users. Uses mongoose UserModel
+ * to integrate with MongoDB
+ */
 import UserModel from '../mongoose/users/UserModel';
 import User from '../models/users/User';
 import UserDaoI from '../interfaces/UserDaoI';
@@ -24,4 +28,5 @@ export default class UserDao implements UserDaoI {
     UserModel.updateOne({ _id: uid }, { $set: user });
   deleteUser = async (uid: string): Promise<any> =>
     UserModel.deleteOne({ _id: uid });
+  deleteAllUsers = async (): Promise<any> => UserModel.deleteMany({});
 }
