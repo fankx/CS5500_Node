@@ -69,5 +69,5 @@ export default class BookmarkDao implements BookmarkDaoI {
    * database
    */
   deleteAllUsersBookmarks = async (uid: string): Promise<any> =>
-    BookmarkModel.deleteMany({ user: uid }).exec();
+    BookmarkModel.deleteMany({ user: uid });
 }
