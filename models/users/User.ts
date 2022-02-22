@@ -1,3 +1,7 @@
+/**
+ * @file implements the data model to represent user in the middle tier
+ */
+
 import AccountType from './AccountType';
 import MaritalStatus from './MaritalStatus';
 import Location from './Location';
@@ -12,10 +16,11 @@ export default interface User {
   email: string;
   profilePhoto?: string;
   headerImage?: string;
-  biography?: string;
-  dateOfBirth?: Date;
   accountType?: AccountType;
   maritalStatus?: MaritalStatus;
+  biography?: string;
+  dateOfBirth?: Date;
+  joined: Date;
   location?: Location;
   salary?: number;
 }

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import User from '../../models/users/User';
+
 const UserSchema = new mongoose.Schema<User>(
   {
     username: {
