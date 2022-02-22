@@ -107,7 +107,7 @@ export default class BookmarkController implements BookmarkControllerI {
   findAllUsersThatBookmarkedTuit = (req: Request, res: Response) =>
     BookmarkController.bookmarkDao
       .findAllUsersThatBookmarkedTuit(req.params.tid)
-      .then((bookmarks) => res.json(bookmarks));
+      .then((users) => res.json(users));
 
   /**
    * Deletes all bookmarks of a certain user from the database

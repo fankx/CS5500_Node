@@ -50,7 +50,7 @@ export default class BookmarkDao implements BookmarkDaoI {
    * database
    */
   findAllUsersBookmarks = async (uid: string): Promise<Bookmark[]> =>
-    BookmarkModel.find({ user: uid }).populate('tuit').exec();
+    await BookmarkModel.find({ user: uid }).populate('tuit').exec();
 
   /**
    * Given specified tuitId to find the users who bookmarked the tuit.
@@ -58,9 +58,8 @@ export default class BookmarkDao implements BookmarkDaoI {
    * @returns Promise To be notified when the users are retrieved from
    * database
    */
-  findAllUsersThatBookmarkedTuit(tid: string): Promise<Bookmark[]> {
-    return BookmarkModel.find({ tuit: tid }).populate('user').exec();
-  }
+  findAllUsersThatBookmarkedTuit = async (tid: string): Promise<Bookmark[]> =>
+    await BookmarkModel.find({ tuit: tid }).populate('user').exec();
 
   /**
    * Given specified userId to delete all tuits that they bookmarked.
@@ -69,5 +68,5 @@ export default class BookmarkDao implements BookmarkDaoI {
    * database
    */
   deleteAllUsersBookmarks = async (uid: string): Promise<any> =>
-    BookmarkModel.deleteMany({ user: uid });
+    await BookmarkModel.deleteMany({ user: uid }).exec();
 }
