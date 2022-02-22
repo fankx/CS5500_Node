@@ -51,7 +51,7 @@ export default class BookmarkController implements BookmarkControllerI {
         BookmarkController.bookmarkController.findAllUsersThatBookmarkedTuit
       );
       app.delete(
-        '/api/users/:uid/bookmarks/:tid',
+        '/api/users/:uid/bookmarks',
         BookmarkController.bookmarkController.deleteAllUsersBookmarks
       );
     }
