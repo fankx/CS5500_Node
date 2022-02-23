@@ -38,7 +38,7 @@ export default class MessageController implements MessageControllerI {
       MessageController.messageController = new MessageController();
 
       app.post(
-        'api/users/:senderUid/messages/:receiverUid',
+        '/api/users/:senderUid/messages/:receiverUid',
         MessageController.messageController.userMessagesUser
       );
       app.get(
