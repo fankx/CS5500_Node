@@ -59,7 +59,7 @@ export default class BookmarkDao implements BookmarkDaoI {
    * database
    */
   findAllUsersThatBookmarkedTuit = async (tid: string): Promise<Bookmark[]> =>
-    await BookmarkModel.find({ tuit: tid }).populate('user').exec();
+    await BookmarkModel.find({ tuit: tid }).exec();
 
   /**
    * Given specified userId to delete all tuits that they bookmarked.
