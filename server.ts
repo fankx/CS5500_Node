@@ -70,6 +70,7 @@ const courseController = new CourseController(app);
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
 const likesController = LikeController.getInstance(app);
+
 SessionController(app);
 AuthenticationController(app);
 GroupController(app);

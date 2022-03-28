@@ -1,7 +1,10 @@
-import {Request, Response} from "express";
+/**
+ * @file the interface of the likeController
+ */
+import { Request, Response } from 'express';
 
 export default interface LikeControllerI {
-    findAllUsersThatLikedTuit (req: Request, res: Response): void;
-    findAllTuitsLikedByUser (req: Request, res: Response): void;
-    userTogglesTuitLikes (req: Request, res: Response): void;
-};
+  findAllUsersThatLikedTuit(req: Request, res: Response): void;
+  findAllTuitsLikedByUser(req: Request, res: Response): void;
+  userTogglesTuitLikes(req: Request, res: Response): void;
+}
