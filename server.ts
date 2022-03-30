@@ -15,6 +15,7 @@ import CourseController from './controllers/CourseController';
 import UserController from './controllers/UserController';
 import TuitController from './controllers/TuitController';
 import LikeController from './controllers/LikeController';
+import DislikeController from './controllers/DislikeController';
 import SessionController from './controllers/SessionController';
 import AuthenticationController from './controllers/AuthenticationController';
 import mongoose from 'mongoose';
@@ -47,11 +48,12 @@ let sess = {
   saveUninitialized: true,
   resave: true,
   cookie: {
-    secure: false,
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    secure: process.env.NODE_ENV === 'production',
   },
 };
 
-if (process.env.ENVIRONMENT === 'PRODUCTION') {
+if (process.env.ENVIRONMENT === 'production') {
   app.set('trust proxy', 1); // trust first proxy
   sess.cookie.secure = true; // serve secure cookies
 }
@@ -70,6 +72,7 @@ const courseController = new CourseController(app);
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
 const likesController = LikeController.getInstance(app);
+const dislikeController = DislikeController.getInstance(app);
 
 SessionController(app);
 AuthenticationController(app);

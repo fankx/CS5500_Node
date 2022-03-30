@@ -33,6 +33,7 @@ export default class DislikeDao implements DislikeDaoI {
    */
   findAllUsersThatDislikedTuit = async (tid: string): Promise<Dislike[]> =>
     DislikeModel.find({ tuit: tid }).populate('dislikedBy').exec();
+
   /**
    * check if there's a dislikes document in the database for
    * user/tuit combination
@@ -41,13 +42,14 @@ export default class DislikeDao implements DislikeDaoI {
    */
   findUserDislikesTuit = async (uid: string, tid: string): Promise<any> =>
     DislikeModel.findOne({ tuit: tid, dislikedBy: uid });
+
   /**
    * Given specified userId to find the users who dislike it.
    * @param {string} uid the specified user ID, the primary key of user
    * @returns Promise To be notified when the tuits are retrieved from
    * database
    */
-  findAllTuitsDislikedByUser = async (uid: string) =>
+  findAllTuitsDislikedByUser = async (uid: string): Promise<Dislike[]> =>
     DislikeModel.find({ dislikedBy: uid })
       .populate({
         path: 'tuit',
@@ -67,7 +69,7 @@ export default class DislikeDao implements DislikeDaoI {
     DislikeModel.create({ tuit: tid, dislikedBy: uid });
 
   /**
-   * Specific user undislike certain tuit
+   * Specific user undislike a certain tuit
    * @param {string} uid the specified user ID, the primary key of user
    * @param {string} tid the specified tuit ID, the primary key of tuit
    * @returns Promise To be notified when dislikes are deleted in the database
