@@ -22,29 +22,32 @@ import mongoose from 'mongoose';
 import GroupController from './controllers/GroupController';
 const cors = require('cors');
 const session = require('express-session');
+require('dotenv').config();
 
 // build the connection string
 const PROTOCOL = 'mongodb+srv';
-const DB_USERNAME = 'test';
-const DB_PASSWORD = 'test';
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
 const HOST = 'frankiemedia.rfsor.mongodb.net';
 const DB_NAME = 'tuit';
 const DB_QUERY = 'retryWrites=true&w=majority';
 const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;
 // connect to the database
-mongoose.connect(connectionString);
+mongoose.connect(connectionString).then(() => {
+  console.log('Connected to MongoDB');
+  console.log(process.env.CORS_ORIGIN);
+});
 
 const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: 'http://localhost:3000',
+    origin: process.env.CORS_ORIGIN,
   })
 );
 
-const SECRET = 'process.env.SECRET';
 let sess = {
-  secret: SECRET,
+  secret: process.env.EXPRESS_SESSION_SECRET,
   saveUninitialized: true,
   resave: true,
   cookie: {
@@ -53,7 +56,7 @@ let sess = {
   },
 };
 
-if (process.env.ENVIRONMENT === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.set('trust proxy', 1); // trust first proxy
   sess.cookie.secure = true; // serve secure cookies
 }
